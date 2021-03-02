@@ -1,0 +1,3 @@
+include ':squareViewLib'
+include ':app'
+rootProject.name = "SquareView"
