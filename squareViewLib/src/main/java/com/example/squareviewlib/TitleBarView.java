@@ -6,9 +6,11 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author: SuTs
@@ -57,7 +59,18 @@ public class TitleBarView extends RelativeLayout {
         tvTitle.setGravity(Gravity.CENTER);
 
         setBackgroundColor(0xff346712);
+//---
+        LayoutParams leftBtLP = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        leftBtLP.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);
+        addView(leftButton, leftBtLP);
 
+        LayoutParams rightBtLP = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rightBtLP.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
+        addView(rightButton, rightBtLP);
+
+        LayoutParams titleLP = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        titleLP.addRule(RelativeLayout.CENTER_IN_PARENT, TRUE);
+        addView(tvTitle, titleLP);
         //---
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +78,7 @@ public class TitleBarView extends RelativeLayout {
                 if (onBtClickListener != null) {
                     onBtClickListener.onLeftClick();
                 }
+                Toast.makeText(getContext(),"Left button",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -74,6 +88,7 @@ public class TitleBarView extends RelativeLayout {
                 if (onBtClickListener != null) {
                     onBtClickListener.onRightClick();
                 }
+                Toast.makeText(getContext(),"Right button",Toast.LENGTH_SHORT).show();
             }
         });
     }
